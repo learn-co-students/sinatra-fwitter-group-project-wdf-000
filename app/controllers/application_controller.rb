@@ -60,7 +60,7 @@ puts session
       redirect '/login'
     end
 
-    @user = User.find_by_slug(params[:slug])
+    @tweeter = User.find_by_slug(params[:slug])
     erb :'/users/show_user'
   end
 
@@ -96,7 +96,8 @@ puts session
     if !Helpers.is_logged_in?(session)
       redirect '/login'
     end
-
+    
+    @user = Helpers.current_user(session)
     @tweet = Tweet.find(params[:id])
     erb :'tweets/show_tweet'
   end

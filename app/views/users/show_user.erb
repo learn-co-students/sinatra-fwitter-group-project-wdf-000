@@ -1,6 +1,4 @@
-<h2>Welcome, <%=@user.username%></h2>
-
-<h2>My Tweets</h2>
-<%@user.tweets.each do |tweet|%>
+<h2><%=@tweeter.username%>'s Tweets</h2>
+<%@tweeter.tweets.each do |tweet|%>
   <p>[ID <%=tweet.id%>] <%=tweet.content%></p>
 <%end%>
