@@ -2,5 +2,5 @@
 
 <h2>All Tweets</h2>
 <%Tweet.all.each do |tweet|%>
-  <p><%=tweet.user.username%>: <%=tweet.content%></p>
+  <p><%=tweet.user%>: <%=tweet.content%></p>
 <%end%>
