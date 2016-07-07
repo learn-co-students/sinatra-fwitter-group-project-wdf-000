@@ -22,7 +22,7 @@ class TweetsController < ApplicationController
     end
 
     user = Helpers.current_user(session)
-    tweet = Tweet.new(content: params[:content], user_id: user.id)
+    user.tweets < Tweet.create(content: params[:content])
     tweet.save
 
     redirect "/users/#{user.slug}"
