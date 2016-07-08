@@ -1,0 +1,4 @@
+<h2><%=@tweeter.username%>'s Tweets</h2>
+<%@tweeter.tweets.each do |tweet|%>
+  <p>[ID <%=tweet.id%>] <%=tweet.content%></p>
+<%end%>
