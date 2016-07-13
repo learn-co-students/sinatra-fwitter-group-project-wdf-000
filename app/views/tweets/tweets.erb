@@ -1,0 +1,17 @@
+<% if flash.has?(:message) %>
+  <%= flash[:message] %>
+<% end %>
+
+<h1>Welcome, <%= @user.username %></h1>
+<table>
+	<tr>
+		<th>ID</th>
+		<th>Content</th>
+	</tr>
+	<% @tweets.each do |tweet| %>
+		<tr>
+			<td><%= tweet.id %></td> 
+			<td><%= tweet.content %></td> 
+		</tr>
+	<%end%>
+</table>
