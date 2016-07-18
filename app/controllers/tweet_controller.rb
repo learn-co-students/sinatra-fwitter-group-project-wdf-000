@@ -1,7 +1,7 @@
 require './config/environment'
 
 class TweetController < ApplicationController
-  include Helpers 
+
   configure do
     set :views, 'app/views/tweet'
   end

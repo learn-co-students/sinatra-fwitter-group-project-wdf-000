@@ -1,7 +1,7 @@
 require './config/environment'
 
 class UserController < ApplicationController
-  include Helpers
+
   configure do
     set :views, 'app/views/user'
   end
