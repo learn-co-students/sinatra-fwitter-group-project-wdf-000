@@ -1,0 +1,9 @@
+<h1>Welcome, Tweets</h1>
+<% Tweet.all.each do |tweet| %>
+  <% if tweet.user == current_user(session) %>
+    <a href="/tweets/<%= tweet.id %>"><div><%= tweet.content %></div></a>
+  <% else %>
+    <p><%= tweet.content %></p>
+  <% end %>
+  <small>by <a href="/users/<%= tweet.user.slug %>"><%= tweet.user.username %></a></small><br /><br />
+<% end %>

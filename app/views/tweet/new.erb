@@ -1,0 +1,7 @@
+<h1>New Tweet</h1>
+<form action="/tweets" method="POST">
+  <label>Type your message:</label><br /><br />
+  <input type="text" name="tweet[content]" id="content"><br /><br /><br />
+  <input type="hidden" name="tweet[user_id]" value="<%= session[:user_id] %>">
+  <input type="submit" value="submit">
+</form>
