@@ -1,10 +1,18 @@
 require './config/environment'
+require 'bcrypt'
 
 class ApplicationController < Sinatra::Base
+  register Sinatra::ActiveRecordExtension
+  set :views, Proc.new { File.join(root, "../views/") }
+  set :session_secret, "password_security"
+  enable :sessions
 
-  configure do
-    set :public_folder, 'public'
-    set :views, 'app/views'
+  get '/' do
+    if !session[:id]
+      "Welcome to Fwitter"
+    else
+       erb :'tweet/tweets'
+    end
   end
 
 end

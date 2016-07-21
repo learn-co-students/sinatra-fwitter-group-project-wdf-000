@@ -1,0 +1,7 @@
+Welcome, <%= @user %>
+
+<% @user.tweets.all do |tweet| %>
+
+<%= tweet.content %> <br>
+
+<% end %>
