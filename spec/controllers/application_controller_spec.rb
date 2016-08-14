@@ -418,6 +418,7 @@ describe ApplicationController do
         fill_in(:password, :with => "kittens")
         click_button 'submit'
         visit "tweets/#{tweet2.id}"
+        # click_on("Delete Tweet")
         click_button "Delete Tweet"
         expect(page.status_code).to eq(200)
         expect(Tweet.find_by(:content => "look at this tweet")).to be_instance_of(Tweet)
