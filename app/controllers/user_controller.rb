@@ -2,8 +2,7 @@ class UserController < ApplicationController
   include Helpers::InstanceMethods
 
   get '/signup' do
-    # binding.pry
-    if logged_in?(session)
+    if logged_in?
       redirect '/tweets'
     else
       erb :'/registration/signup'
@@ -35,7 +34,7 @@ class UserController < ApplicationController
   end
 
   get '/success' do
-    if logged_in?(session)
+    if logged_in?
       redirect '/tweets'
     else
       redirect '/failure'

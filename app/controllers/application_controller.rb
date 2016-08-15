@@ -10,6 +10,7 @@ class ApplicationController < Sinatra::Base
   end
 
   get '/' do
+    # binding.pry
     erb :'/application/index'
   end
 
