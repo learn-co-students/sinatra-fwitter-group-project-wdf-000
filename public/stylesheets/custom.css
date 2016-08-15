@@ -1,6 +1,10 @@
 /* GENERAL STYLES */
-body {
+.main.wrap {
   min-height: 450px;
+}
+
+.main.index {
+  text-align: center;
 }
 
 #footer {
