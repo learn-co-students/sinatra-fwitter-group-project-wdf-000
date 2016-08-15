@@ -1,9 +1,10 @@
-class UserController < Sinatra::Base
+class UserController < ApplicationController
   include Helpers::InstanceMethods
 
   get '/signup' do
+    # binding.pry
     if logged_in?(session)
-      erb :'/application/tweets'
+      redirect '/tweets'
     else
       erb :'/registration/signup'
     end
