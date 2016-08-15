@@ -1,0 +1,9 @@
+/* GENERAL STYLES */
+body {
+  min-height: 450px;
+}
+
+#footer {
+  text-align: center;
+  border-top: 2px solid black;
+}
