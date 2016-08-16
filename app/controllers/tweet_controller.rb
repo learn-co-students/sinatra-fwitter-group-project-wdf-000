@@ -2,7 +2,9 @@ class TweetController < ApplicationController
   include Helpers::InstanceMethods
 
   get '/tweets' do
+    # binding.pry
     if logged_in?
+      # binding.pry
       @user = current_user(session)
       erb :'/tweets/tweet'
     else
