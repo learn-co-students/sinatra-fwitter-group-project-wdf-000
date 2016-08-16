@@ -37,4 +37,23 @@ class TweetController < ApplicationController
     end
   end
 
+  get '/tweets/:id/edit' do
+    if logged_in?
+      @tweet = Tweet.find(params[:id])
+      erb :'/tweets/edit'
+    else
+      redirect '/login'
+    end
+  end
+
+  patch '/tweets/:id/edit' do
+    tweet = Tweet.find(params[:id])
+    if params[:content].empty?
+      redirect "/tweets/#{tweet.id}/edit"
+    else
+      tweet.update(content: params[:content])
+    end
+    redirect "/tweets/#{tweet.id}"
+  end
+
 end
