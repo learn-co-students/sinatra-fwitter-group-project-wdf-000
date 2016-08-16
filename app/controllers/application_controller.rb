@@ -27,6 +27,7 @@ class ApplicationController < Sinatra::Base
     if user.save
       # binding.pry
       session[:user_id] = user.id
+      flash[:message] = "Successfully Created Account"
       redirect '/tweets'
     else
       redirect '/signup'
@@ -45,6 +46,7 @@ class ApplicationController < Sinatra::Base
     user = User.find_by(:username => params[:username])
     if user && user.authenticate(params[:password])
       session[:user_id] = user.id
+      flash[:message] = "Successfully Logged In"
       redirect '/tweets'
     else
       redirect '/login'

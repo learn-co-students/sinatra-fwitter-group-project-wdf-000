@@ -2,9 +2,9 @@
 
   <div class="main wrap">
 
-    <% if flash.has?(:message) %>
-      <div class="alert alert-success" role="alert"><%= flash[:message] %></div>
-    <% end %>
+  <% if flash.has?(:message) %>
+    <div class="alert alert-success alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button><%= flash[:message] %></div>
+  <% end %>
 
     <h2>@: <%= @tweet.content %></h2>
 
