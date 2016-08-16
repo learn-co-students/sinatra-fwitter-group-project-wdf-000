@@ -1,0 +1,24 @@
+<%= erb :'/layouts/_header' %>
+
+<div class="main wrap">
+
+  <% if flash.has?(:message) %>
+    <div class="alert alert-danger alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button><%= flash[:message] %></div>
+  <% end %>
+
+  <h2><%=@tweet.content%></h2>
+
+  <form action="/tweets/<%=@tweet.id%>/edit" method="POST">
+    <input id="hidden" type="hidden" name="_method" value="patch">
+    <h2><label for="content">Edit fweet:</label></h2>
+    <p>
+      <textarea id="content" type="text" name="content" placeholder="<%=@tweet.content%>"></textarea>
+    </p>
+    <button class="btn btn-default" type="submit" value="submit">Submit</button>
+    <a class="btn btn-default" href="/users/<%=current_user(session).slug%>">Cancel</a>
+  </form>
+  <hr>
+
+</div>
+
+<%= erb :'/layouts/_footer' %>

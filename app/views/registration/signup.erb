@@ -1,0 +1,22 @@
+<%= erb :'/layouts/_header' %>
+
+  <div class="main wrap">
+
+
+    <h2>Sign Up</h2>
+    <form action="/signup" method="POST">
+      <h3>
+        <input type="text" name="username" placeholder="Username:">  
+      </h3>
+      <h3>
+        <input type="text" name="email" placeholder="Your Email:">  
+      </h3>
+      <h3>
+        <input type="password" name="password" placeholder="Password:">  
+      </h3>
+      <button class="btn btn-default" type="submit" value="Sign Up">Sign Up</button>
+    </form>
+
+    </div>
+
+<%= erb :'/layouts/_footer' %>

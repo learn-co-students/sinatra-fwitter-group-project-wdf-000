@@ -1,0 +1,15 @@
+<%= erb :'/layouts/_header' %>
+
+<div class="main wrap">
+
+  <h1>Create a Fweet</h1>
+
+  <form action="/tweets" method="POST">
+    <label for="content">Fweet Content: </label><br>
+    <textarea id="content" type="textarea" name="content"></textarea><br>
+    <button type="submit" value="submit">Submit</button>
+  </form>
+
+</div>
+
+<%= erb :'/layouts/_footer' %>

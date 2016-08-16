@@ -1,0 +1,22 @@
+/* GENERAL STYLES */
+.main.wrap {
+  min-height: 450px;
+  text-align: center;
+}
+
+.main.index {
+  text-align: center;
+}
+
+.tweet.wrap {
+  background-color: #F0FFFF;
+  border: 1px solid black;
+  border-bottom: 3px solid orange;
+  padding: 0.5em;
+  margin-bottom: 0.5em;
+}
+
+#footer {
+  text-align: center;
+  border-top: 2px solid black;
+}
