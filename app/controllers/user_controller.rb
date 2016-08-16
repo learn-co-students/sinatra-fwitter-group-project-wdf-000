@@ -10,12 +10,13 @@ class UserController < ApplicationController
   end
 
   post '/signup' do
-    user = User.create(params[:user])
+    user = User.create(params)
     if user.save
+      # binding.pry
       session[:user_id] = user.id
-      redirect '/success'
+      redirect '/tweets'
     else
-      redirect '/failure'
+      redirect '/signup'
     end
   end
 
@@ -24,25 +25,13 @@ class UserController < ApplicationController
   end
 
   post '/login' do
-    user = User.find_by(:username => params[:user][:username])
-    if user && user.authenticate(params[:user][:password])
+    user = User.find_by(:username => params[:username])
+    if user && user.authenticate(params[:password])
       session[:user_id] = user.id
-      redirect '/success'
-    else
-      redirect '/failure'
-    end
-  end
-
-  get '/success' do
-    if logged_in?
       redirect '/tweets'
     else
-      redirect '/failure'
+      redirect '/login'
     end
-  end
-
-  get '/failure' do
-    erb :'/application/signup'
   end
 
   get 'logout' do
