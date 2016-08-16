@@ -10,7 +10,7 @@
 
   <hr>
 
-  <% Tweet.all.each do |tweet| %>
+  <% Tweet.all.reverse.each do |tweet| %>
     <p class="tweet wrap"><span><%= username_by_tweet(tweet.user_id) %> said: </span><%= tweet.content %></p>
     <hr>
   <% end %>
