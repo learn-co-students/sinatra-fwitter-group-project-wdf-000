@@ -16,6 +16,7 @@
       <ul class="nav navbar-nav">
         <% if logged_in? %>
           <li class="active"><a href="/tweets">Home <span class="sr-only">(current)</span></a></li>
+          <li><a href="/users/<%=current_user(session).slug%>">View My Fweets</a></li>
           <li><a href="/tweets/new">Post Fweet</a></li>
           <li><a href="/logout">Logout</a></li>
         <% else %>
