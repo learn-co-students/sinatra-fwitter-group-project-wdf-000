@@ -6,7 +6,7 @@ class TweetController < ApplicationController
       @user = current_user(session)
       erb :'/application/tweet'
     else
-      redirect '/failure'
+      redirect '/login'
     end
   end
 

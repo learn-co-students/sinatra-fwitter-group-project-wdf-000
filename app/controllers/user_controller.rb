@@ -21,7 +21,11 @@ class UserController < ApplicationController
   end
 
   get '/login' do
-    erb :'/application/login'
+    if logged_in?
+      redirect '/tweets'
+    else
+      erb :'/application/login'
+    end
   end
 
   post '/login' do
@@ -34,9 +38,9 @@ class UserController < ApplicationController
     end
   end
 
-  get 'logout' do
+  get '/logout' do
     session.clear
-    redirect '/'
+    redirect '/login'
   end
 
 end
