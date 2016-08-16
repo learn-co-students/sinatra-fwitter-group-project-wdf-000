@@ -23,7 +23,6 @@ class TweetController < ApplicationController
     tweet = Tweet.create(content: params[:content], user_id: session[:user_id])
     if tweet.save
       flash[:message] = "Successfully Created Fweet"
-      binding.pry
       redirect "/tweets/#{tweet.id}"
     else
       redirect '/tweets/new'
@@ -64,6 +63,7 @@ class TweetController < ApplicationController
     if tweet.user_id == session[:user_id]
       tweet.destroy
     end
+    flash[:message] = "Successfully Deleted Fweet"
     redirect '/tweets'
   end
 

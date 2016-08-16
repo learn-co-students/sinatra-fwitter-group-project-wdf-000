@@ -25,7 +25,6 @@ class ApplicationController < Sinatra::Base
   post '/signup' do
     user = User.create(params)
     if user.save
-      # binding.pry
       session[:user_id] = user.id
       flash[:message] = "Successfully Created Account"
       redirect '/tweets'
@@ -56,6 +55,7 @@ class ApplicationController < Sinatra::Base
   get '/logout' do
     if logged_in?
       session.clear
+      flash[:message] = "Successfully Logged Out"
       redirect '/login'
     else
       redirect '/'
