@@ -7,6 +7,7 @@
   <% @user.tweets.each do |tweet| %>
     <div class="tweet wrap">
       <p>You said: <%= tweet.content %></p>
+      <p style="text-align: right;"><span><a href="/tweets/<%=tweet.id%>">View Fweet</a><span></p>
     </div>
   <% end %>
 
