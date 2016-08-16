@@ -1,0 +1,22 @@
+<%= erb :'/layouts/_header' %>
+
+<div class="main wrap">
+
+  <% if flash.has?(:message) %>
+    <div class="alert alert-success alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button><%= flash[:message] %></div>
+  <% end %>
+
+  <h2>Login</h2>
+  <form action="/login" method="POST">
+    <h3>
+      <input type="text" name="username" placeholder="Username:">  
+    </h3>
+    <h3>
+      <input type="password" name="password" placeholder="Password:">  
+    </h3>
+    <button class="btn btn-default" type="submit" value="submit">Submit</button>
+  </form>
+
+</div>
+
+<%= erb :'/layouts/_footer' %>

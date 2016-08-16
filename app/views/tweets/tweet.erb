@@ -1,0 +1,27 @@
+<%= erb :'/layouts/_header' %>
+
+<div class="main wrap">
+
+  <% if flash.has?(:message) %>
+    <div class="alert alert-success alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button><%= flash[:message] %></div>
+  <% end %>
+
+  <h1>Welcome, <%= @user.username %></h1>
+
+  <br>
+
+  <h3>Everyones fweets below: </h3>
+
+  <hr>
+
+  <% Tweet.all.reverse.each do |tweet| %>
+    <div class="tweet wrap">
+      <p style="text-align: left;">On <%= tweet.date.strftime("%c") if tweet.date %> <%= username_by_tweet(tweet.user_id)%> said: </p>
+      <p><%= tweet.content %></p>
+      <p style="text-align: right;"><span><a href="/tweets/<%=tweet.id%>">View Fweet</a><span></p>
+    </div>
+  <% end %>
+
+</div>
+
+<%= erb :'/layouts/_footer' %>
