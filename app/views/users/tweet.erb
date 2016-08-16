@@ -4,9 +4,18 @@
 
   <h1>Welcome, <%= @user.username %></h1>
 
-  <h3><a href="/users/<%= @user.slug %>">View My Fweets</a></h3>
+  <br>
 
-  <!-- show everyones fweets -->
+  <h3>Everyones fweets below: </h3>
+
+  <hr>
+
+  <% Tweet.all.each do |tweet| %>
+    <p class="tweet wrap"><span><%= username_by_tweet(tweet.user_id) %> said: </span><%= tweet.content %></p>
+    <hr>
+  <% end %>
+
+  <h3><a href="/users/<%= @user.slug %>">View My Fweets</a></h3>
 
 </div>
 
