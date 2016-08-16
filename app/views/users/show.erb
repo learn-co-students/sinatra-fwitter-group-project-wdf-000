@@ -2,9 +2,8 @@
 
 <div class="main wrap">
 
-  <h1>Welcome, <%= @user.username %></h1>
-
-  <h3>Your latest fweets: </h3>
+  <h2><%= @user.username%> fweets: </h2>
+  <hr>
   <% @user.tweets.each do |tweet| %>
     <div class="tweet wrap">
       <p> <%= tweet.content %></p>

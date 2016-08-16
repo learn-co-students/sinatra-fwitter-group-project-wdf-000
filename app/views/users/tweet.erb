@@ -1,0 +1,13 @@
+<%= erb :'/layouts/_header' %>
+
+<div class="main wrap">
+
+  <h1>Welcome, <%= @user.username %></h1>
+
+  <h3><a href="/users/<%= @user.slug %>">View My Fweets</a></h3>
+
+  <!-- show everyones fweets -->
+
+</div>
+
+<%= erb :'/layouts/_footer' %>
