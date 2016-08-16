@@ -1,6 +1,7 @@
 /* GENERAL STYLES */
 .main.wrap {
   min-height: 450px;
+  text-align: center;
 }
 
 .main.index {
