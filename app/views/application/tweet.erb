@@ -1,8 +1,16 @@
-<h1>Welcome, <%= @user.username %></h1>
+<%= erb :'/layouts/_header' %>
 
-<h3>Your latest fweets: </h3>
-<% @user.tweets.each do |tweet| %>
-  <div class="tweet wrap">
-    <p> <%= tweet.content %></p>
-  </div>
-<% end %>
+<div class="main wrap">
+
+  <h1>Welcome, <%= @user.username %></h1>
+
+  <h3>Your latest fweets: </h3>
+  <% @user.tweets.each do |tweet| %>
+    <div class="tweet wrap">
+      <p> <%= tweet.content %></p>
+    </div>
+  <% end %>
+
+</div>
+
+<%= erb :'/layouts/_footer' %>
