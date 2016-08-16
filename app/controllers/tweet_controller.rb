@@ -20,7 +20,7 @@ class TweetController < ApplicationController
   end
 
   post '/tweets' do
-    tweet = Tweet.create(content: params[:content], user_id: session[:user_id])
+    tweet = Tweet.create(content: params[:content], user_id: session[:user_id], date: Time.now)
     if tweet.save
       flash[:message] = "Successfully Created Fweet"
       redirect "/tweets/#{tweet.id}"
@@ -56,7 +56,7 @@ class TweetController < ApplicationController
       redirect "/tweets/#{tweet.id}/edit"
     else
       flash[:message] = "Successfully Updated Fweet"
-      tweet.update(content: params[:content])
+      tweet.update(content: params[:content], date: Time.now)
     end
     redirect "/tweets/#{tweet.id}"
   end

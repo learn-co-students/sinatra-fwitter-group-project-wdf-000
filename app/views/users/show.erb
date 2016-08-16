@@ -10,7 +10,8 @@
   <hr>
   <% @user.tweets.reverse.each do |tweet| %>
     <div class="tweet wrap">
-      <p>You said: <%= tweet.content %></p>
+      <p style="text-align: left;">On <%= tweet.date.strftime("%c") %> you said: </p>
+      <p><%= tweet.content %></p>
       <p style="text-align: right;"><span><a href="/tweets/<%=tweet.id%>">View Fweet</a><span></p>
     </div>
   <% end %>
