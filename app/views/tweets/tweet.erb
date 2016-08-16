@@ -15,8 +15,11 @@
   <hr>
 
   <% Tweet.all.reverse.each do |tweet| %>
-    <p class="tweet wrap"><span><%= username_by_tweet(tweet.user_id) %> said: </span><%= tweet.content %></p>
-    <hr>
+    <div class="tweet wrap">
+      <p><span><%= username_by_tweet(tweet.user_id) %> said: </span><%= tweet.content %>
+      </p>
+      <p style="text-align: right;"><span><a href="/tweets/<%=tweet.id%>">View Fweet</a><span></p>
+    </div>
   <% end %>
 
 </div>

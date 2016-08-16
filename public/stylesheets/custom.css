@@ -10,8 +10,10 @@
 
 .tweet.wrap {
   background-color: #F0FFFF;
-  border-bottom: 2px solid orange;
+  border: 1px solid black;
+  border-bottom: 3px solid orange;
   padding: 0.5em;
+  margin-bottom: 0.5em;
 }
 
 #footer {
