@@ -49,7 +49,10 @@ class TweetController < ApplicationController
 
   patch '/tweets/:id/edit' do
     tweet = Tweet.find(params[:id])
-    if params[:content].empty?
+    if tweet.user_id != session[:user_id]
+      flash[:message] = "You Can Not Edit Other Tweets"
+      redirect "/tweets/#{tweet.id}/edit"
+    elsif params[:content].empty?
       redirect "/tweets/#{tweet.id}/edit"
     else
       flash[:message] = "Successfully Updated Fweet"
@@ -61,9 +64,11 @@ class TweetController < ApplicationController
   post '/tweets/:id/delete' do
     tweet = Tweet.find(params[:id])
     if tweet.user_id == session[:user_id]
+      flash[:message] = "Successfully Deleted Fweet"
       tweet.destroy
+    else
+      flash[:message] = "You Can Not Delete Other Fweets"
     end
-    flash[:message] = "Successfully Deleted Fweet"
     redirect '/tweets'
   end
 
