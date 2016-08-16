@@ -2,6 +2,10 @@
 
 <div class="main wrap">
 
+  <% if flash.has?(:message) %>
+    <div class="alert alert-success" role="alert"><%= flash[:message] %></div>
+  <% end %>
+
   <h2><%= @user.username%> fweets: </h2>
   <hr>
   <% @user.tweets.each do |tweet| %>
