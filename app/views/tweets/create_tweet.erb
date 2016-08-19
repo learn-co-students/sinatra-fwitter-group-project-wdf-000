@@ -1,9 +1,8 @@
-<%if !@session[:tweet_errors].nil?%>
-  <h3>Error!</h3>
-  <%@session[:tweet_errors].each do |error, message|%>
-    <p><%=error%> <%=message%></p>
-  <%end%>
-<%end%>
+
+
+<% if flash.has?(:message) %>
+  <p>Error: tweet <%= flash[:message] %></p>
+<% end %>
 
 <h2>Keep Calm and Tweet It:</h2>
 <form method = "POST" action="/tweets">

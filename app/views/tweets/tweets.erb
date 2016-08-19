@@ -3,5 +3,6 @@
   <input type = "submit" value = "New Tweet">
 </form>
 <%@tweets.each do |tweet|%>
-<p><%=tweet.content%></p>
+<p><a href ="/tweets/<%=tweet.id%>"><%=tweet.content%> </a></p> 
+<p>Posted by <%=tweet.user.username%></p>
 <%end%>

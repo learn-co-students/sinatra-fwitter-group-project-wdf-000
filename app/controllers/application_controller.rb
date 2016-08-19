@@ -1,6 +1,9 @@
 require './config/environment'
+require 'rack-flash'
 
 class ApplicationController < Sinatra::Base
+
+  use Rack::Flash
 
   configure do
     set :public_folder, 'public'
@@ -88,10 +91,9 @@ class ApplicationController < Sinatra::Base
     tweet = Tweet.create(params)
     user = User.find(session[:id])
     if tweet.errors.present?
-      session[:tweet_errors] = tweet.errors.messages
+      flash[:message] = tweet.errors.messages.values
       redirect '/tweets/new'
     else
-      session[:tweet_errors] = nil
       if current_user
         tweet.user = user
         tweet.save
@@ -111,6 +113,7 @@ class ApplicationController < Sinatra::Base
 
   get '/tweets/:id/edit' do
     if logged_in?
+      @session = session
       @tweet = Tweet.find(params[:id])
       erb :'/tweets/edit_tweet'
     else
@@ -122,9 +125,8 @@ class ApplicationController < Sinatra::Base
     tweet = Tweet.find(params[:id])
     if logged_in? && current_user.id == tweet.user_id
       tweet = Tweet.update(params[:id], :content => params[:content])
-
       if tweet.errors.present?
-         session[:tweet_errors] = tweet.errors.messages
+         flash[:message] = tweet.errors.messages.values
          redirect "/tweets/#{params[:id]}/edit"
       else
          redirect "/tweets/#{params[:id]}"
