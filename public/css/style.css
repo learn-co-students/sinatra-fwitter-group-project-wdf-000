@@ -1,0 +1,19 @@
+body {
+  background: rgba(30, 30, 30, 0.9);
+}
+
+h1,h2,h3,h4,h5 {
+  color: gold;
+  font-size: 2em;
+  font-style: oblique;
+}
+
+p {
+  color: gold;
+  font-weight: normal;
+}
+
+a {
+  color: white;
+  font-style: italic;
+}
