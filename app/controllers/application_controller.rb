@@ -1,7 +1,9 @@
 require './config/environment'
+require 'rack-flash'
 
 class ApplicationController < Sinatra::Base
   include Helpers
+  use Rack::Flash
 
   configure do
     set :public_folder, 'public'
@@ -16,7 +18,11 @@ class ApplicationController < Sinatra::Base
   end
 
   get '/signup' do
-    erb :'/users/create_user'
+    if is_logged_in?(session)
+      redirect to "/tweets"
+    else
+      erb :'/users/create_user'
+    end
   end
 
   get '/login' do
@@ -38,7 +44,25 @@ class ApplicationController < Sinatra::Base
 
   # Display all created tweets
   get '/tweets' do
+    @tweets = Tweet.all
     erb :'/tweets/tweets'
+  end
+
+  get '/login' do
+    erb :'/users/login'
+  end
+
+  post '/login' do
+    @current_user = User.find_by(username: params[:username])
+
+    if @current_user && @current_user.authenticate(params[:password])
+      session[:user_id] = @current_user.id
+      flash[:notice] = "Welcome, #{@current_user.username}"
+      redirect to '/tweets'
+    else
+      flash[:notice] = "Oops! Something ain't right... Try again."
+      redirect to '/login'
+    end
   end
 
 end
