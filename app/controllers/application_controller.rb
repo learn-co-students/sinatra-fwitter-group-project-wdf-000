@@ -2,7 +2,6 @@ require './config/environment'
 require 'rack-flash'
 
 class ApplicationController < Sinatra::Base
-  include Helpers
   use Rack::Flash
 
   configure do
@@ -18,15 +17,11 @@ class ApplicationController < Sinatra::Base
   end
 
   get '/signup' do
-    if is_logged_in?(session)
+    if is_logged_in?
       redirect to "/tweets"
     else
       erb :'/users/create_user'
     end
-  end
-
-  get '/login' do
-    erb :'/users/login'
   end
 
   # Receive params from create_user view
@@ -42,26 +37,52 @@ class ApplicationController < Sinatra::Base
     redirect to "/tweets"
   end
 
-  # Display all created tweets
-  get '/tweets' do
-    @tweets = Tweet.all
-    erb :'/tweets/tweets'
-  end
+
 
   get '/login' do
-    erb :'/users/login'
+    if is_logged_in?
+      redirect to "/tweets"
+    else
+      erb :'/users/login'
+    end
   end
 
   post '/login' do
-    @current_user = User.find_by(username: params[:username])
+    @user = User.find_by(username: params[:username])
 
-    if @current_user && @current_user.authenticate(params[:password])
-      session[:user_id] = @current_user.id
-      flash[:notice] = "Welcome, #{@current_user.username}"
+    if @user && @user.authenticate(params[:password])
+      # flash[:notice] = "Welcome, #{@user.username}"
+      session[:user_id] = @user.id
       redirect to '/tweets'
     else
       flash[:notice] = "Oops! Something ain't right... Try again."
       redirect to '/login'
+    end
+  end
+
+  get '/logout' do
+    session.clear
+    redirect to "/login"
+  end
+
+  get '/tweets' do
+    @tweets = Tweet.all
+
+    if is_logged_in?
+      erb :'/tweets/tweets'
+    else
+      redirect to '/login'
+    end
+  end
+
+  # Helpers
+  helpers do
+    def current_user
+      User.find_by(id: session["user_id"])
+    end
+
+    def is_logged_in?
+      !!session["user_id"]
     end
   end
 
