@@ -1,0 +1,7 @@
+<h2>Welcome, <%=@user.username%></h2>
+<form method="GET" action="/tweets/new">
+  <input type = "submit" value = "New Tweet">
+</form>
+<%@tweets.each do |tweet|%>
+<p><%=tweet.content%></p>
+<%end%>
