@@ -59,8 +59,12 @@ class ApplicationController < Sinatra::Base
   end
 
   get '/logout' do
-    session.clear
-    redirect to "/login"
+    if is_logged_in?
+      session.clear
+      redirect to "/login"
+    else
+      redirect to '/'
+    end
   end
 
   get '/tweets' do
@@ -77,14 +81,6 @@ class ApplicationController < Sinatra::Base
     @user = User.find_by_slug(params[:slug])
     erb :'/users/show'
   end
-
-  # get '/tweets/show_tweet' do
-  #   if is_logged_in?
-  #     erb :'/tweets/show_tweet'
-  #   else
-  #     redirect to '/login'
-  #   end
-  # end
 
   get '/tweets/new' do
     if is_logged_in?
@@ -126,6 +122,16 @@ class ApplicationController < Sinatra::Base
     @tweet = Tweet.find_by(id: params[:id])
     @tweet.update(content: params[:content])
     erb :'/tweets/show_tweet'
+  end
+
+  post '/tweets/:id/delete' do
+    tweet = Tweet.find_by(id: params[:id])
+    if is_logged_in? && current_user.tweets.include?(tweet)
+      tweet.destroy
+      redirect to '/tweets'
+    else
+      redirect to '/login'
+    end
   end
 
   ### Helpers ###
