@@ -1,7 +1,5 @@
-<h1><%= current_user.username %>'s Latest Tweets</h1>
-
-<ul>
-  <% current_user.tweets.each do |tweet| %>
-  <li><%= tweet.content %></li>
-  <% end %>
-</ul>
+<h3><%= @tweet.content %></h3>
+<form action="/tweets/<%=@tweet.id%>/delete" method="POST">
+    <a class="btn btn-default" href="/tweets/<%= @tweet.id %>/edit">Edit Tweet</a>
+    <button class="btn btn-danger" value="delete">Delete Tweet</button>
+</form>
