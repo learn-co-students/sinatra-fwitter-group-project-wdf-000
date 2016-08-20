@@ -37,8 +37,6 @@ class ApplicationController < Sinatra::Base
     redirect to "/tweets"
   end
 
-
-
   get '/login' do
     if is_logged_in?
       redirect to "/tweets"
@@ -75,7 +73,40 @@ class ApplicationController < Sinatra::Base
     end
   end
 
-  # Helpers
+  get '/users/:slug' do
+    @user = User.find_by_slug(params[:slug])
+    # redirect to "/tweets/#{@user.slug}/show_tweet"
+    erb :'/tweets/show_tweet'
+  end
+
+  get '/tweets/show_tweet' do
+    if is_logged_in?
+      # binding.pry
+      redirect to "/users/#{current_user.slug}"
+    else
+      redirect to '/login'
+    end
+  end
+
+  get '/tweets/new' do
+    if is_logged_in?
+      erb :'/tweets/create_tweet'
+    else
+      redirect to '/login'
+    end
+  end
+
+  post '/tweets' do
+    if params[:content].empty?
+      redirect to '/tweets/new'
+    else
+      tweet = Tweet.create(params)
+      current_user.tweets << tweet
+      redirect to '/tweets'
+    end
+  end
+
+  ### Helpers ###
   helpers do
     def current_user
       User.find_by(id: session["user_id"])
