@@ -1,0 +1,6 @@
+<h2>Welcome, <%=@user.username%></h2>
+<h3>Here is the list of tweets</h3>
+
+<%Tweet.all.each.with_index(1) do |tweet, i|%>
+<h4><%= i %>. <%= tweet.content %></h4>
+<% end %>
