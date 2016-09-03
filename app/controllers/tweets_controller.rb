@@ -25,13 +25,17 @@ class TweetsController < ApplicationController
   		tweet = Tweet.create(params)
   		@user.tweets << tweet
   		redirect "/tweets/#{tweet.id}"
+  	else
+  		redirect '/tweets/new'
   	end
   end
 
   get '/tweets/:id' do
-  	if logged_in?
-  		@tweet = Tweet.find(params[:id])
+  	@tweet = Tweet.find(params[:id])
+  	if logged_in? && @tweet.user_id == session[:user_id]
   		erb :'tweets/show_tweet'
+  	elsif logged_in?
+  		erb :'tweets/tweet'
   	else
   		redirect '/login'
   	end
@@ -60,6 +64,8 @@ class TweetsController < ApplicationController
   	if @tweet.user_id == current_user.id
   		@tweet.destroy
   		redirect '/tweets'
+  	else
+  		"you don't have the right to delete this tweet."
   	end
   end
 
