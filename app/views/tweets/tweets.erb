@@ -1,0 +1,10 @@
+<h3>Welcome, Your tweets:</h3>
+<a href="/logout">LogOut</a>
+<br>
+<br>
+
+<% @tweets.each.with_index(1) do |tweet, index| %>
+<%= index %>.
+<a href="/tweets/<%= tweet.id %>"><%= tweet.content %></a>
+<br>
+<%end%>
