@@ -1,0 +1,14 @@
+<p> Welcome, <%= @user.username %></p>
+look at this tweet
+
+<br></br>
+
+<% User.all.each do |user| %>
+<% user.tweets.each do |tweet| %>
+<%= tweet.content %>
+<br></br>
+<% end %>
+<% end %>
+
+<button onclick="location.href='/tweets/new'">Fweet</button>
+<button onclick="location.href='/logout'">Log Out</button>
