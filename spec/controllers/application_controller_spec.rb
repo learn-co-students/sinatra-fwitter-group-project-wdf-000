@@ -6,6 +6,7 @@ describe ApplicationController do
     it 'loads the homepage' do
       get '/'
       expect(last_response.status).to eq(200)
+
       expect(last_response.body).to include("Welcome to Fwitter")
     end
   end
@@ -23,6 +24,7 @@ describe ApplicationController do
         :email => "skittles@aol.com",
         :password => "rainbows"
       }
+
       post '/signup', params
       expect(last_response.location).to include("/tweets")
     end
@@ -33,6 +35,7 @@ describe ApplicationController do
         :email => "skittles@aol.com",
         :password => "rainbows"
       }
+
       post '/signup', params
       expect(last_response.location).to include('/signup')
     end
@@ -169,8 +172,10 @@ describe ApplicationController do
         visit '/login'
 
         fill_in(:username, :with => "becky567")
+
         fill_in(:password, :with => "kittens")
         click_button 'submit'
+
         visit "/tweets"
         expect(page.body).to include(tweet1.content)
         expect(page.body).to include(tweet2.content)
@@ -350,6 +355,7 @@ describe ApplicationController do
         fill_in(:username, :with => "becky567")
         fill_in(:password, :with => "kittens")
         click_button 'submit'
+  
         visit '/tweets/1/edit'
 
         fill_in(:content, :with => "i love tweeting")
