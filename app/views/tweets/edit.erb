@@ -1,0 +1,11 @@
+<% if flash.has?(:message) %>
+  <%= flash[:message] %>
+<% end %>
+
+<form  action="/tweets/<%=@tweet.id%>/edit" method="POST">
+  <input type="hidden" name="_method" value="PATCH">
+  <p>
+    Content: <input id = "content" type="text" name="content" value = "<%= @tweet.content%>">
+  </p>
+  <button type="submit" name="submit">submit</button>
+</form>
