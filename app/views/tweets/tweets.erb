@@ -1,0 +1,11 @@
+Welcome, <%=@user.username%>
+<br></br>
+
+<% User.all.each do |user| %>
+<% user.tweets.each do |tweet| %>
+<%= tweet.content %><br>
+<% end %>
+<% end %>
+
+<button type="submit" form="form1" value="submit">submit</button>
+
