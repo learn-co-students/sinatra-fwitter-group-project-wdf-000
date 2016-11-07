@@ -1,7 +1,7 @@
 <h1>Your Fweets</h1>
 <%current_user.tweets.all.each do |tweet|%>
-<%=tweet.content%><br/>
-<a href="tweets/<%=tweet.id%>/edit">Edit</a><br/>
+Tweet <%=tweet.id%>: <%=tweet.content%><br/>
+<a href="/tweets/<%=tweet.id%>/edit">Edit</a><br/>
 <form action="/tweets/<%=tweet.id%>/delete" method="POST">
   <input id="hidden" type="hidden" name="_method" value="DELETE">
   <button type="submit" value="delete">Delete Fweet</button>

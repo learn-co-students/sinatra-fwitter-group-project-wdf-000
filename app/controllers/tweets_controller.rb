@@ -51,7 +51,7 @@ class TweetsController < ApplicationController
     @tweet = Tweet.find_by_id(params[:id])
     if @tweet.user_id == current_user.id
       @tweet.update(content: params[:content])
-      redirect "tweets/#{@tweet.id}/edit"
+      redirect "tweets"
     else
       redirect "tweets"
     end
