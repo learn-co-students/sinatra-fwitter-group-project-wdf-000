@@ -22,8 +22,8 @@ class UsersController < ApplicationController
   end
 
   get '/users/:slug' do
-    @user = User.find_by_slug(slug: slug)
-    erb :"tweets/show"
+    @user = User.find_by_slug(params[:slug])
+    erb :"users/home"
   end
 
   post '/signup' do

@@ -2,9 +2,11 @@
 <br><br/>
 
 <%Tweet.all.each do |tweet|%>
-<%=tweet.user.username%>: <%=tweet.content%> <a href="/tweets/<%=tweet.id%>">edit</a><br/>
+<%=tweet.user.username%>: <%=tweet.content%><br/>
 <%end%><br><br/>
 
-<a href="/tweets/new">New Tweet</a>
+<a href="/tweets/new">New Fweet</a>
+<br><br/>
+<a href="/users/<%=@user.slug%>">Edit your Fweets</a>
 <br><br/>
 <a href="/logout">Sign out</a>
